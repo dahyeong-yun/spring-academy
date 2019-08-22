@@ -21,7 +21,7 @@
 						예약</a>
 					<div class="dropdown-menu">
 						<h5 class="dropdown-header">진행중인 강의r</h5>
-						<a class="dropdown-item" href="./student_leture_room.html">Java
+						<a class="dropdown-item" href="./lecture_javaFramework.jsp">Java
 							Framework</a> <a class="dropdown-item" href="#">Link 2</a> <a
 							class="dropdown-item" href="#">Link 3</a>
 						<h5 class="dropdown-header">완료된 강의</h5>
@@ -30,8 +30,7 @@
 				</div>
 			</li>
 			<li class="nav-item"><a class="nav-link" href="#">증명 / 발급</a></li>
-			<li class="nav-item"><a class="nav-link disabled" href="#">하위
-					메뉴는 드롭다운</a></li>
+			<li class="nav-item"><a class="nav-link disabled" href="#">하위 메뉴는 드롭다운</a></li>
 		</ul>
 	</nav>
 </body>
