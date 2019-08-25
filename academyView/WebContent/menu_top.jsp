@@ -38,9 +38,10 @@
 	<!-- 최상단 메뉴 : 로고, 검색, 설정, 알림 등 -->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<!-- 로고 -->
-		<a class="navbar-brand" href="#"> <img src="bird.jpg" alt="Logo"
+		<a class="navbar-brand mr-auto" href="#"> <img src="bird.jpg" alt="Logo"
 			style="width: 40px;">
 		</a>
+		<button class="btn btn-danger" href="로그아웃 페이지">로그아웃</button>
 	</nav>
 
 </body>
