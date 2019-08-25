@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 
 	<jsp:include page="menu_student.jsp"></jsp:include>
 
@@ -18,13 +12,7 @@
 		</div>
 		<div class="row mt-4">
 			<div class="col-2">
-				<div class="btn-group-vertical btn-block">
-  					<button type="button" class="btn btn-outline-primary w-100">출석현황</button>
-  					<button type="button" class="btn btn-outline-primary w-100">진도표</button>
-  					<button type="button" class="btn btn-outline-primary w-100">QnA</button>
-  					<button type="button" class="btn btn-outline-primary w-100">과제물</button>
-  					<button type="button" class="btn btn-outline-primary w-100">시험</button>
-				</div>
+				<jsp:include page="./lecture_left_menu.jsp"></jsp:include>
 			</div>
 			<div class="col-10">
 				기본 뷰<br> 출석 그냥 확인용 -> 이카운트 달력 형태 출석, 결석<br> 진도표 -> 원래 입력된
@@ -33,5 +21,3 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
