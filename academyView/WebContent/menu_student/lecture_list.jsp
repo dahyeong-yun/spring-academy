@@ -12,18 +12,18 @@
 	<!-- 본문 컨텐츠 -->
 	<div class="container mt-4">
 		<h1 class="display-6">수강 중인 강의</h1>
-		<div class="row">
-			<div class="card col-5">
-				<img class="card-img-top" src="img_avatar1.png" alt="Card image"
-					style="width: 100%">
+		<div class="row mt-4">
+			<div class="card col-5 mr-auto">
+				<div class="text-right">
+					<img class="card-img-top" src="../resource/image/course_sbw.png" alt="Card image"
+					style="width: 50%">
+				</div>
 				<div class="card-img-overlay">
 					<h4 class="card-title">Java Framework</h4>
-					<a href="./lecture_javaFramework.jsp" class="btn btn-primary">강의실
+					<a href="./lecture_home_javaFramework.jsp" class="btn btn-primary">강의실
 						입장</a>
 				</div>
 			</div>
-			<div class="col-1"></div>
-			<div class="col-1"></div>
 			<div class="card col-5">
 				<img class="card-img-top" src="img_avatar1.png" alt="Card image"
 					style="width: 100%">
