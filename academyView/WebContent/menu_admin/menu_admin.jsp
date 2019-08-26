@@ -12,6 +12,7 @@
 	<!-- 네비 하위 그림자 설정 -->
 	<nav class="navbar navbar-expand-sm">
 		<ul class="navbar-nav mx-auto">
+			<li class="nav-item"><a class="nav-link" href="#">대시 보드</a></li>
 			<li class="nav-item active"><a class="nav-link" href="#"> <i
 					class="far fa-bell"></i><br> 강의 관리
 			</a></li>
