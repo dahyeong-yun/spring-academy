@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+    <!-- 관리자 템플릿 -->
+    <definition name="admin" template="/WEB-INF/tiles/template.jsp">
+    	<put-attribute name="menu"   value="/WEB-INF/tiles/admin/admin_menu.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+    </definition>
+    
+    <!-- 직원 템플릿 -->
+    
+    
+    
+    <!-- 학생 템플릿 -->
+    <definition name="student" template="/WEB-INF/tiles/template.jsp">
+    	<put-attribute name="menu"   value="/WEB-INF/tiles/student/student_menu.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+    </definition>
+    
+	    <!-- 각 메뉴 dashboard -->
+	    <definition name="student/*" extends="student">
+	    	<put-attribute name="left" value="/WEB-INF/tiles/student/lecture_left_menu.jsp" />
+	    	<put-attribute name="body" value="/WEB-INF/tiles/student/{1}/home.jsp" />
+	    </definition>
+	    
+		    <!-- 1. 수강관리 -->
+		    <!-- 기본 수강 관리 페이지 *강좌명 -->
+		    <definition name="student/lecture/*" extends="student">
+		    	<put-attribute name="left" value="/WEB-INF/tiles/student/lecture_left_menu.jsp" />
+		        <put-attribute name="body" value="/WEB-INF/tiles/student/lecture/home.jsp" />
+		    </definition>
+		    
+		    <!-- 기본 수강 관리 페이지 *강좌명/*메뉴명 -->
+		    <definition name="student/lecture/*/*" extends="student">
+		    	<put-attribute name="left" value="/WEB-INF/tiles/student/lecture_left_menu.jsp" />
+		        <put-attribute name="body" value="/WEB-INF/tiles/student/lecture/{2}.jsp" />
+		    </definition>
+    
+     		<!-- 2. 강의실 예약 -->
+		    <!--  -->
+		    
+		    <!-- 3. 증명/발급 -->
+		    <!--  -->
+    
+</tiles-definitions>
