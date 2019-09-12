@@ -23,9 +23,10 @@ public class LectureController {
 	}
 	
 	@RequestMapping("{lectureName}/{menuName}")
-	public String lectureAttend(@PathVariable String lectureName, Model model) {
+	public String lectureAttend(@PathVariable String lectureName, @PathVariable String menuName,Model model) {
 		model.addAttribute("depth1","수강 관리");
 		model.addAttribute("depth2",lectureName);
-		return "student/lecture/"+lectureName;
+		return "student/lecture/"+lectureName+"/"+menuName;
 	}
+	
 }

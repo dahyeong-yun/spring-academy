@@ -15,9 +15,9 @@
 				</a>
 				<div class="dropdown-menu">
 					<h5 class="dropdown-header">진행중인 강의r</h5>
-					<a class="dropdown-item" href="./lecture_home_javaFramework.jsp">Java
-						Framework</a> <a class="dropdown-item" href="#">Link 2</a> <a
-						class="dropdown-item" href="#">Link 3</a>
+					<a class="dropdown-item" href="./lecture_home_javaFramework.jsp">JavaFramework</a>
+					<a class="dropdown-item" href="#">Link 2</a>
+					<a class="dropdown-item" href="#">Link 3</a>
 					<h5 class="dropdown-header">완료된 강의</h5>
 					<a class="dropdown-item" href="#">Another link</a>
 				</div>

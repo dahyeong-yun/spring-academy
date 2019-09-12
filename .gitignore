@@ -1,6 +1,5 @@
 /build/
 .settings/*
-academyView/*
 
 AcademyBefore/.settings/*
 AcademyBefore/target/*
