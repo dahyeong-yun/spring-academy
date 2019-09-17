@@ -20,22 +20,29 @@
         <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
     </definition>
     
+    <!-- 학생 dashboard -->
+    <definition name="student/dashboard" template="/WEB-INF/tiles/template_dashboard.jsp">
+    	<put-attribute name="menu"   value="/WEB-INF/tiles/student/student_menu.jsp" />
+    	<put-attribute name="body" value="/WEB-INF/tiles/student/dashboard/dashboard.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+    </definition>
+    
 	    <!-- 각 메뉴 dashboard -->
 	    <definition name="student/*" extends="student">
-	    	<put-attribute name="left" value="/WEB-INF/tiles/student/lecture_left_menu.jsp" />
-	    	<put-attribute name="body" value="/WEB-INF/tiles/student/{1}/home.jsp" />
+	    	<put-attribute name="left" value="/WEB-INF/tiles/student/{1}/left_menu.jsp" />
+	    	<put-attribute name="body" value="/WEB-INF/tiles/student/{1}/dashboard.jsp" />
 	    </definition>
 	    
 		    <!-- 1. 수강관리 -->
 		    <!-- 기본 수강 관리 페이지 *강좌명 -->
 		    <definition name="student/lecture/*" extends="student">
-		    	<put-attribute name="left" value="/WEB-INF/tiles/student/lecture_left_menu.jsp" />
-		        <put-attribute name="body" value="/WEB-INF/tiles/student/lecture/home.jsp" />
+		    	<put-attribute name="left" value="/WEB-INF/tiles/student/lecture/left_menu.jsp" />
+		        <put-attribute name="body" value="/WEB-INF/tiles/student/lecture/dashboard.jsp" />
 		    </definition>
 		    
 		    <!-- 기본 수강 관리 페이지 *강좌명/*메뉴명 -->
 		    <definition name="student/lecture/*/*" extends="student">
-		    	<put-attribute name="left" value="/WEB-INF/tiles/student/lecture_left_menu.jsp" />
+		    	<put-attribute name="left" value="/WEB-INF/tiles/student/lecture/left_menu.jsp" />
 		        <put-attribute name="body" value="/WEB-INF/tiles/student/lecture/{2}.jsp" />
 		    </definition>
     
