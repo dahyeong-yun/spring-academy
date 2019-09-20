@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.academy.mappers.student.studentMapper">
+	<!-- 대시보드 : 특정 학생의 수강 과목 리스트 -->
+	<select id="attendCourseList" resultType="AttendCourseVO">
+		select user_id, user_login_id, user_password, user_type
+		from users
+		where user_login_id = #{user_login_id}
+	</select>
+</mapper>
