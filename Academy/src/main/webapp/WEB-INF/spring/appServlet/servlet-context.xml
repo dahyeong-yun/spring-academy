@@ -42,4 +42,15 @@
 		<beans:property name="order" value="1" />
 	</beans:bean>
 
+	<!-- Interceptor -->
+	<beans:bean id="CommonInterceptor" class="com.academy.core.interceptor.CommonInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/**" />
+			<exclude-mapping path="/login" />
+			<beans:ref bean="CommonInterceptor" />
+		</interceptor>
+	</interceptors>
+
 </beans:beans>

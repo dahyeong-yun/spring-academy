@@ -72,6 +72,7 @@ commit;
 
 -- -------------
 -- 과목 정보 테이블(커리큘럼, 강사, 일정만 바꿔 낄 수 있도록)
+-- lectrue
 -- -------------
 create table course (
     cou_id int primary key,
@@ -143,20 +144,6 @@ values(attend_course_seq.nextval, 2, 1);
 
 commit;
 
--- 수강 과목 리스트 뷰
-select s.stu_id, s.stu_name, co.cou_name
-from attend_course a
-join student s
-on s.stu_id = a.stu_id
-join course co
-on co.cou_id = a.cou_id;
--- where s.stu_id = 2;
-
-
-
-
-
-
 -- 직원 테이블
 create table employee (
 	emp_id int primary key,
@@ -165,15 +152,6 @@ create table employee (
 	emp_name varchar(20) not null,
     emp_type char(1) not null -- 관리자, 상담원, 교수자, 오퍼레이션(회계, 커뮤니티)
 );
-
-
-
-
--- 커리큘럼 테이블
-create table curriculum (
-    curr_id int primary key
-);
-
 
 
 -- 실제 열린 강의 리스트 테이블(어떤 학생이 듣는지)
@@ -193,13 +171,3 @@ create table qnaBorad(
 drop table myMember;
 
 commit;
-
--- 화면별 query
-
--- 로그인
-select user_id, user_login_id, user_password, user_type
-from users
-where user_login_id = 'admin';
-
-commit;
-

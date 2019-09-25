@@ -5,25 +5,25 @@
 	<nav class="navbar navbar-expand-sm">
 		<ul class="navbar-nav mx-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="dashboard">
+				<a class="nav-link" href="/student/dashboard">
 					<i class="fas fa-chart-area"></i>
 					<br>대시보드
 				</a>
 			</li>
 			<li class="nav-item" >
-				<a class="nav-link" href="lecture">
+				<a class="nav-link" href="/student/lecture">
 					<i class="fas fa-chalkboard"></i>
 					<br>수강 관리
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="studyroom">
+				<a class="nav-link" href="/student/studyroom">
 					<i class="far fa-calendar-check"></i>
 					<br>강의실 예약
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="issue">
+				<a class="nav-link" href="/student/issue">
 					<i class="far fa-file"></i>
 					<br>증명 / 발급
 				</a>

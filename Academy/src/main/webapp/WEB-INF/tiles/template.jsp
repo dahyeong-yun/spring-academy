@@ -45,8 +45,16 @@
 				    <li class="breadcrumb-item"><a href="#">Home</a></li>
 				  </ol>
 				</nav>
-
-				<h1 class="display-6"><%-- ${depth2} --%>메뉴명</h1>
+				
+			<c:choose>
+				<c:when test="${pageTitle != null}">
+					<h1 class="display-6">${pageTitle}</h1>
+				</c:when>
+				<c:otherwise>
+					<h1 class="display-6">메뉴명</h1>
+				</c:otherwise>
+			</c:choose>
+			
 			</div>
 			
 			<div class="row mt-4">

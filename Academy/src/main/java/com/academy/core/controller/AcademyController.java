@@ -6,8 +6,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +15,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.academy.core.service.AcademyService;
 import com.academy.core.vo.UserVO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class AcademyController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(AcademyController.class);
 	
 	@Inject
 	private AcademyService academyService;
@@ -33,7 +32,7 @@ public class AcademyController {
 	 * */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		log.info("Welcome home! The client locale is {}.", locale);
 		return "redirect:/login";
 	}
 	
@@ -45,7 +44,7 @@ public class AcademyController {
 	 * */
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public void getLogin() throws Exception {
-		logger.info("로그인  폼 GET 요청");
+		log.info("로그인  폼 GET 요청");
 	}
 	
 	/**
@@ -56,7 +55,7 @@ public class AcademyController {
 	 * */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String postLogin(UserVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
-		logger.info("로그인 POST 요청 | vo : "+vo.toString());
+		log.info("로그인 POST 요청 | vo : "+vo.toString());
 		
 		// 이미 로그인 했을 경우 로그인 못하도록 처리
 		HttpSession session = req.getSession();
@@ -78,7 +77,7 @@ public class AcademyController {
 			} else if(loginUser.getUser_type().equals("2")) {
 				return "redirect:/student/dashboard";
 			} else {
-				logger.info("존재하지 않는 사용자 유형");
+				log.info("존재하지 않는 사용자 유형");
 			}
 		}
 		rttr.addFlashAttribute("msg","fail");

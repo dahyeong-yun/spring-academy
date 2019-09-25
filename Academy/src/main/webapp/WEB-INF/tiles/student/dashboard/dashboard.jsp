@@ -33,7 +33,7 @@
 					</div>
 				</div>
 				
-				<button class="btn btn-primary btn-sm">전체 강의 보기</button>
+				<a href="/student/lecture" class="btn btn-primary btn-sm">전체 강의 보기</a>
 			</div>
 		</div>
 	</div>
