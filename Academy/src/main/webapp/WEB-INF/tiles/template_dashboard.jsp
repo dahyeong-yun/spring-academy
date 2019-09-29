@@ -41,8 +41,7 @@
 		<!-- 본문 컨텐츠 -->
 		<div class="container mt-4"> <!-- 컨테이너 높이를 풀로 -->
 			<div class="container">
-				<%-- ${depth1} > ${depth2} --%>
-				<h1 class="display-6"><%-- ${depth2} --%>대시보드</h1>
+				<h1 class="display-6">대시보드</h1>
 				<div id="body">
 					<tiles:insertAttribute name="body" />
 				</div>

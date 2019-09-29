@@ -55,13 +55,15 @@ public class AcademyController {
 	 * */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String postLogin(UserVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
-		log.info("로그인 POST 요청 | vo : "+vo.toString());
+		
 		
 		// 이미 로그인 했을 경우 로그인 못하도록 처리
 		HttpSession session = req.getSession();
 		
 		// 비밀번호 일치 검사
 		UserVO loginUser = academyService.login(vo);
+		log.info("로그인 POST 요청 | vo : "+vo.toString());
+		log.info("로그인 POST 요청 | loginUser : "+loginUser.toString());
 		boolean passMatch = vo.getUser_password().equals(loginUser.getUser_password());
 		
 		// 비밀번호 일치 시,
@@ -73,7 +75,7 @@ public class AcademyController {
 			if(loginUser.getUser_type().equals("0")) {
 				return "redirect:/admin/dashboard";
 			} else if(loginUser.getUser_type().equals("1")) {
-				return "redirect:/employee/dashboard";
+				return "redirect:/admin/dashboard";
 			} else if(loginUser.getUser_type().equals("2")) {
 				return "redirect:/student/dashboard";
 			} else {

@@ -18,7 +18,7 @@ public class AcademyDAOImpl implements AcademyDAO {
 	@Inject
 	private SqlSession session;
 	
-	private final String namespace = "com.academy.mappers.academyMapper";
+	private final String namespace = "com.academy.mappers.core.academyMapper";
 	/**
 	 * 사용자 로그인 */
 	@Override

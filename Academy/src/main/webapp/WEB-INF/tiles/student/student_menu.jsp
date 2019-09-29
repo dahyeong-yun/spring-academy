@@ -28,6 +28,11 @@
 					<br>증명 / 발급
 				</a>
 			</li>
-			
+			<li class="nav-item">
+				<a class="nav-link" href="/student/info">
+					<i class="fas fa-info-circle"></i>
+					<br>내 정보
+				</a>
+			</li>
 		</ul>
 	</nav>

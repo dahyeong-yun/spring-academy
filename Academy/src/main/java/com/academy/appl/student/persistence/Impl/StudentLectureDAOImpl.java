@@ -19,7 +19,7 @@ public class StudentLectureDAOImpl implements StudentLectureDAO {
 	@Inject
 	private SqlSession session;
 	
-	private String namespace = "com.academy.mappers.student.LectureMapper";
+	private String namespace = "com.academy.mappers.student.lectureMapper";
 	
 	// 수강 강의 리스트
 	@Override

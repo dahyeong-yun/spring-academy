@@ -6,5 +6,6 @@
 	<typeAliases>
 		<package name="com.academy.core.vo"/>
 		<package name="com.academy.appl.student.vo"/>
+		<package name="com.academy.appl.admin.vo"/>
 	</typeAliases>
 </configuration>

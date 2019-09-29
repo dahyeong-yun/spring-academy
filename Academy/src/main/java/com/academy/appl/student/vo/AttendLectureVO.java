@@ -6,4 +6,5 @@ public class AttendLectureVO {
 	private int stu_id;
 	private int lec_id;
 	private String lec_name;
+	private String lec_dis;
 }
