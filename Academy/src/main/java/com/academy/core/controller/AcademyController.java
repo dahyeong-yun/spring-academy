@@ -55,8 +55,6 @@ public class AcademyController {
 	 * */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String postLogin(UserVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
-		
-		
 		// 이미 로그인 했을 경우 로그인 못하도록 처리
 		HttpSession session = req.getSession();
 		
@@ -85,4 +83,18 @@ public class AcademyController {
 		rttr.addFlashAttribute("msg","fail");
 		return "redirect:/login";
 	}
+	
+	/**
+	 * 로그아웃 기능
+	 * 
+	 * @throws Exception 
+	 * @Param : HttpServletRequest
+	 * */
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String getLogout(HttpServletRequest req) throws Exception {
+		log.info("로그아웃  GET 요청");
+		academyService.logout(req);
+		return "redirect:/login";
+	}
+	
 }

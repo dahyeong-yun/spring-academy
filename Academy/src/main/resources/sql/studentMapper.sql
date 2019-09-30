@@ -10,4 +10,4 @@ from (select s.stu_id, l.lec_id, l.lec_name, l.lec_dis,
       where s.stu_id = 2)
 where row_num between 1 and 3;
 
-select 'x' from users;
+select * from users;

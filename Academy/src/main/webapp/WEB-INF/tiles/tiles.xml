@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>	
 <!DOCTYPE tiles-definitions PUBLIC
   "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
@@ -6,13 +6,21 @@
 <tiles-definitions>
 	<!-- 직원  -->
 		<!-- 직원 dashboard 템플릿 -->
-		<definition name="admin/dashboard" template="/WEB-INF/tiles/template_dashboard.jsp">
+		<definition name="admin.dashboard" template="/WEB-INF/tiles/template_dashboard.jsp">
 			<put-attribute name="nav" value="/WEB-INF/tiles/nav.jsp" />
 			<put-attribute name="menu" value="/WEB-INF/tiles/admin/admin_menu.jsp" />
-			<put-attribute name="body" value="/WEB-INF/tiles/admin/dashboard/dashboard.jsp" />
+			
 			<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
 		</definition>
 		
+			<definition name="admin/dashboard" extends="admin.dashboard">
+				<put-attribute name="body" value="/WEB-INF/tiles/admin/dashboard/dashboard.jsp" />
+			</definition>
+			
+			<definition name="admin/lecture" extends="admin.dashboard">
+				<put-attribute name="body" value="/WEB-INF/tiles/admin/lecture/home.jsp" />
+			</definition>
+			
 		<!-- 직원 왼쪽 메뉴 없는 템플릿-->
 		<definition name="admin.noleft" template="/WEB-INF/tiles/template_admin_noleft.jsp">
 			<put-attribute name="nav" value="/WEB-INF/tiles/nav.jsp" />
@@ -30,8 +38,20 @@
 				<definition name="admin/counsel/*" extends="admin">
 					<put-attribute name="body" value="/WEB-INF/tiles/admin/counsel/{1}.jsp" />
 				</definition>
+			
+			<!-- 2. 강의 관리 -->
+
+			<!-- 3. 강의실 관리 -->
+			
+			<!-- 4. 내 정보 -->
 				
-			<!-- 3. 학생 관리 -->
+			<!-- 5. 직원 관리 -->
+				<!-- 직원관리 홈 -->
+				<definition name="admin/employee" extends="admin.noleft">
+					<put-attribute name="body" value="/WEB-INF/tiles/admin/employee/home.jsp" />
+				</definition>
+				
+			<!-- 6. 학생 관리 -->
 				<!-- 학생관리 홈 -->
 				<definition name="admin/student" extends="admin.noleft">
 					<put-attribute name="body" value="/WEB-INF/tiles/admin/student/home.jsp" />
@@ -51,9 +71,6 @@
 			</definition>
 			
 			
-				
-					
-					
 	<!-- 직원 끝 -->
 	
 	<!-- 학생  -->

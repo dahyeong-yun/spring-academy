@@ -12,9 +12,9 @@
 	<!-- jqgrid -->
 	<link rel="stylesheet" type="text/css" media="screen" href="/resources/vendor/jqgridUI/jquery-ui.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/resources/vendor/jqgrid/css/ui.jqgrid.css" />
-	<script type="text/javascript" src="/resources/vendor/jqgrid/js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="/resources/vendor/jqgrid/jquery.js"></script>
 	<script type="text/javascript" src="/resources/vendor/jqgrid/js/i18n/grid.locale-kr.js"></script>
-	<script type="text/javascript" src="/resources/vendor/jqgrid/js/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript" src="/resources/vendor/jqgrid/js/minified/jquery.jqGrid.min.js"></script>
 	
 	<!--  bootstrap4  -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">

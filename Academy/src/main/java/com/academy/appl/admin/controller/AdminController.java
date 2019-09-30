@@ -28,14 +28,6 @@ public class AdminController {
 		return "admin/lecture";
 	}
 	
-	@RequestMapping("student")
-	public String GETstudent(Model model) {
-		log.info("GET 관리자 메뉴의 학생 관리 메뉴 요청");
-		
-		
-		return "admin/student";
-	}	
-	
 	@RequestMapping("studyroom")
 	public String GETstudyroom(Model model) {
 		log.info("GET 관리자 메뉴의 강의실 관리 메뉴 요청");
@@ -52,5 +44,11 @@ public class AdminController {
 	public String GETemployee(Model model) {
 		log.info("GET 관리자 메뉴의 직원 관리 메뉴 요청");
 		return "admin/employee";
+	}	
+	
+	@RequestMapping("student")
+	public String GETstudent(Model model) {
+		log.info("GET 관리자 메뉴의 학생 관리 메뉴 요청");
+		return "admin/student";
 	}	
 }

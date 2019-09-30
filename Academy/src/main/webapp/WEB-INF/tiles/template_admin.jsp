@@ -9,6 +9,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
+	<!-- jqgrid -->
+	<link rel="stylesheet" type="text/css" media="screen" href="/resources/vendor/jqgridUI/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/resources/vendor/jqgrid/css/ui.jqgrid.css" />
+	<script type="text/javascript" src="/resources/vendor/jqgrid/jquery.js"></script>
+	<script type="text/javascript" src="/resources/vendor/jqgrid/js/i18n/grid.locale-kr.js"></script>
+	<script type="text/javascript" src="/resources/vendor/jqgrid/js/minified/jquery.jqGrid.min.js"></script>
+	
 	<!--  bootstrap4  -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -19,13 +26,6 @@
 		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
 		crossorigin="anonymous">
 	
-	<!-- jqgrid -->
-	<link rel="stylesheet" type="text/css" media="screen" href="/resources/vendor/jqgridUI/jquery-ui.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="/resources/vendor/jqgrid/css/ui.jqgrid.css" />
-	<script type="text/javascript" src="/resources/vendor/jqgrid/js/jquery.js"></script>
-	<script type="text/javascript" src="/resources/vendor/jqgrid/js/i18n/grid.locale-kr.js"></script>
-	<script type="text/javascript" src="/resources/vendor/jqgrid/js/minified/jquery.jqGrid.min.js"></script>
-
 	<!-- custom style.css -->
 	<link href='<c:url value="/css/style.css"/>' rel="stylesheet">
 	
