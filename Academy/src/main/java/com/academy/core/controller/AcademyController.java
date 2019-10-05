@@ -60,24 +60,30 @@ public class AcademyController {
 		
 		// 비밀번호 일치 검사
 		UserVO loginUser = academyService.login(vo);
-		log.info("로그인 POST 요청 | vo : "+vo.toString());
-		log.info("로그인 POST 요청 | loginUser : "+loginUser.toString());
-		boolean passMatch = vo.getUser_password().equals(loginUser.getUser_password());
-		
-		// 비밀번호 일치 시,
-		if(passMatch) {
-			// 사용자 정보 session
-			session.setAttribute("loginUser", loginUser);
+		if(loginUser!=null) { // NullpointerException 방지
+			log.info("로그인 POST 요청 | vo : "+vo.toString());
+			log.info("로그인 POST 요청 | loginUser : "+loginUser.toString());
+			boolean passMatch = vo.getUser_password().equals(loginUser.getUser_password());
 			
-			// 사용자 유형별로 redirect
-			if(loginUser.getUser_type().equals("0")) {
-				return "redirect:/admin/dashboard";
-			} else if(loginUser.getUser_type().equals("1")) {
-				return "redirect:/admin/dashboard";
-			} else if(loginUser.getUser_type().equals("2")) {
-				return "redirect:/student/dashboard";
-			} else {
-				log.info("존재하지 않는 사용자 유형");
+			// 비밀번호 일치 시,
+			if(passMatch) {
+				if(loginUser.getUser_suspended().equals("1")) {
+					rttr.addFlashAttribute("msg","suspended");
+					return "redirect:/login";
+				} else {
+					// 사용자 정보 session
+					session.setAttribute("loginUser", loginUser);
+					// 사용자 유형별로 redirect
+					if(loginUser.getUser_type().equals("0")) {
+						return "redirect:/admin/dashboard";
+					} else if(loginUser.getUser_type().equals("1")) {
+						return "redirect:/admin/dashboard";
+					} else if(loginUser.getUser_type().equals("2")) {
+						return "redirect:/student/dashboard";
+					} else {
+						log.info("존재하지 않는 사용자 유형");
+					}
+				}
 			}
 		}
 		rttr.addFlashAttribute("msg","fail");

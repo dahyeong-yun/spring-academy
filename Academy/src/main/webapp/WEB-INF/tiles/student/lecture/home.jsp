@@ -37,7 +37,6 @@
 			</h1>
 		</div>
 	</div>
-	
 </div>
 
 <h4 class="card-title">강의 전체 리스트</h4>

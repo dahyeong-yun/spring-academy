@@ -23,7 +23,7 @@ public class StudentMenuServiceImpl implements StudentMenuService {
 	
 	// 메인 수강 강의 리스트 3개
 	@Override
-	public List<AttendLectureVO> attendLectureList(int stu_id) throws Exception {
+	public List<AttendLectureVO> attendLectureList(String stu_id) throws Exception {
 		return dao.attendLectureList(stu_id);
 	}
 

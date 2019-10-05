@@ -9,10 +9,10 @@
 		<div class="card shadow-sm ">
 			<div class="card-body">
 				<h4 class="card-title">내 프로필</h4>
-				<p>${loginUser.user_login_id}님, 즐거운 하루 되세요 :)</p>
-				<p>아이디 : </p>
-				<p>이메일 : </p>
-				<button class="btn btn-danger btn-sm">정보 변경</button>
+				<p>${loginUser.user_name}님, 즐거운 하루 되세요 :)</p>
+				<p>아이디 : ${loginUser.user_id}</p>
+				<p>이메일 : ${loginUser.user_email}</p>
+				<a href="/admin/info" class="btn btn-danger btn-sm">정보 변경</a>
 				
 			</div>
 		</div>
@@ -53,7 +53,7 @@
 		<div class="card shadow-sm">
 			<div class="card-body">
 				<h4 class="card-title">내 강의 질문 리스트</h4>
-				<p> 예약된 강의실이 없네요 :)</p>
+				<p> 게시물  최근 순 3개</p>
 			</div>
 		</div>
 	</div>

@@ -6,7 +6,7 @@ import com.academy.appl.student.vo.AttendLectureVO;
 
 public interface StudentMenuDAO {
 	// 메인 수강 강의 리스트 3개
-	public List<AttendLectureVO> attendLectureList(int stu_id) throws Exception;
+	public List<AttendLectureVO> attendLectureList(String stu_id) throws Exception;
 
 
 }

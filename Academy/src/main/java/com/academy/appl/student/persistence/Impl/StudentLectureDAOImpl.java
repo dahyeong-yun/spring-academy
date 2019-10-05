@@ -23,7 +23,7 @@ public class StudentLectureDAOImpl implements StudentLectureDAO {
 	
 	// 수강 강의 리스트
 	@Override
-	public List<AttendLectureVO> attendLectureList(int stu_id) throws Exception {
+	public List<AttendLectureVO> attendLectureList(String stu_id) throws Exception {
 		return session.selectList(namespace+".attendLectureList", stu_id);
 	}
 

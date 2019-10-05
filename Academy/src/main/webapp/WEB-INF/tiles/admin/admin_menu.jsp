@@ -11,28 +11,28 @@
 					<br>대시 보드
 				</a>
 			</li>
-			
+			<!-- 
 			<li class="nav-item">
 				<a class="nav-link" href="/admin/counsel">
 					<i class="far fa-comments"></i>
 					<br>상담 관리
 				</a>
 			</li>
-			
+			-->
 			<li class="nav-item active">
 				<a class="nav-link" href="/admin/lecture">
 					<i class="fas fa-chalkboard"></i>
 					<br>강의 관리
 				</a>
 			</li>
-			
+			<!-- 
 			<li class="nav-item">
 				<a class="nav-link" href="/admin/studyroom">
 					<i class="fas fa-school"></i>
 					<br>강의실 관리
 				</a>
 			</li>
-			
+			-->
 		<c:if test="${loginUser.user_type eq 0}">
 			<li class="nav-item">
 				<a class="nav-link" href="/admin/employee">

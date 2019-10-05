@@ -1,163 +1,234 @@
 -- -------------------------------------------------------------------
 -- 사용자 테이블
 -- -------------------------------------------------------------------
-create table users(
-    user_id int primary key,
-    user_login_id varchar2(20) not null unique,
-    user_password varchar2(20) not null,
-    user_type char(1) not null, -- 0:관리자, 1:직원, 2:학생, 3: 잠재 고객
-    user_name varchar2(13),
-    user_email varchar2(100)
+CREATE TABLE users(
+    user_id VARCHAR2(11) NOT NULL, -- 2019 01 00(10,11,12 / 20,21 잠재 고객) 11자리 숫자
+    user_password VARCHAR2(20) NULL, -- 잠재 고객을 만들어야 해서 null 가능
+    user_type CHAR(1) NOT NULL, -- 0 : 관리자 / 1 : 직원 / 2 : 학생 / 3 : 잠재고객
+    user_suspended CHAR(1) DEFAULT 0 NOT NULL, -- 0 : 활성 / 1 : 정지
+	user_name VARCHAR2(20) NOT NULL,
+	user_phone VARCHAR2(11) NOT NULL, -- 최대 11자리 숫자 3+4+4
+	user_email VARCHAR2(50) NOT NULL, -- 
+	user_address VARCHAR2(200)	NULL,
+	user_gender CHAR(1)	NOT NULL,  -- 0 : 남 / 1 : 여'
+	user_join DATE NOT NULL
 );
-drop table users;
+DROP TABLE users;
+SELECT * FROM users;
+DESC users;
 
-create sequence users_seq;
-drop sequence users_seq; 
+-- 기본키 설정
+ALTER TABLE users
+ADD CONSTRAINT pk_users
+PRIMARY KEY(user_id);
 
-select * from users;
-desc users;
+ALTER TABLE users DROP CONSTRAINT pk_users;
 
--- alter table users add(user_name varchar2(13));
--- alter table users add(user_email varchar2(100));
--- 초기 비밀번호
--- 비밀번호 변경 여부
--- 가입일자
--- 정지 여부
-
--- 관리자 dummy
-insert into users values (users_seq.nextval, 'admin','123','0','원희재','gmlwo123@gmail.com');
-
--- 직원 dummy
-insert into users values (users_seq.nextval, '201900001','123','1','김관리','rhksfl123@gmail.com');
-insert into users values (users_seq.nextval, '201901002','123','1','박상담','tkdeka123@gmail.com');
-
-insert into users values (users_seq.nextval, '201902003','123','1','이교수','rutn123@gmail.com');
-insert into users values (users_seq.nextval, '201900004','123','1','정관리','jql123@gmail.com');
-insert into users values (users_seq.nextval, '201902005','123','1','정교수','wjdry123@gmail.com');
-
--- 학생 dummy
-insert into users values (users_seq.nextval, '20190001','123','2','김명성','audtjd123@gmail.com');
-insert into users values (3, '20190001','123','2','김명성','audtjd123@gmail.com');
-insert into users values (4, '20190002','123','2','김자바','rlawk123@gmail.com');
-insert into users values (5, '20190003','123','2','이자바','dlwk123@gmail.com');
-
-delete from users;
-
-rollback;
-commit;
-
+COMMIT;
 
 -- -------------------------------------------------------------------
 -- 학생 테이블
 -- -------------------------------------------------------------------
-create table student (
-	stu_id int primary key,
-    stu_birth date null,
-    stu_phone varchar2(20) not null,
-    stu_email varchar2(100) not null,
-    stu_addr varchar2(100) null
+CREATE TABLE student (
+	stu_id VARCHAR2(11)NOT NULL,
+    stu_type CHAR(1) NOT NULL
 );
-drop table student;
+DROP TABLE student;
+SELECT * FROM student;
+DESC student;
 
-alter table student drop column stu_name;
+-- 기본키 설정
+ALTER TABLE student
+ADD CONSTRAINT pk_student
+PRIMARY KEY(stu_id);
 
-create sequence student_seq;
-drop sequence student_seq;
+ALTER TABLE student DROP CONSTRAINT pk_student;
 
-select * from student;
-desc student;
-
--- 외래키 제약 추가
+/* 외래키 제약 추가
 alter table student
 add constraint fk_student_stu_id
 foreign key(stu_id) references users(user_id);
 
 alter table student
 drop constraint fk_student_stu_id;
+*/
 
--- dummy data
-insert into student (stu_id, stu_name, stu_birth, stu_phone, stu_email, stu_addr)
-values (2, sysdate,'01077756452','asdk@gmail.com','인천시 미추홀구 숭의동');
+COMMIT;
 
-delete from student;
+-- -------------------------------------------------------------------
+-- 직원 테이블
+-- -------------------------------------------------------------------
+CREATE TABLE employee (
+	emp_id VARCHAR2(11) NOT NULL,
+    emp_rank CHAR(1) NOT NULL,
+    emp_salary NUMBER(9) NOT NULL,
+    emp_type CHAR(1) NOT NULL
+);
+DROP TABLE employee;
+SELECT * FROM employee;
+DESC employee;
 
-commit;
+-- 기본키 설정
+ALTER TABLE employee
+ADD CONSTRAINT pk_employee
+PRIMARY KEY(emp_id);
+
+ALTER TABLE employee DROP CONSTRAINT pk_employee;
+
+COMMIT;
 
 -- -------------------------------------------------------------------
 -- 강의실 테이블
 -- -------------------------------------------------------------------
-create table classroom (
-    clr_id int primary key,
-    clr_name varchar2(20),
-    clr_capa int
+CREATE TABLE classroom (
+    clr_id VARCHAR2(10) NOT NULL,
+    clr_name VARCHAR2(20) NOT NULL,
+    clr_capa NUMBER(3) NOT NULL
 );
-drop table classroom;
+DROP TABLE classroom;
+SELECT * FROM classroom;
+DESC classroom;
 
-create sequence classroom_seq;
-drop sequence classroom_seq;
+-- 기본키 설정
+ALTER TABLE classroom
+ADD CONSTRAINT pk_classroom
+PRIMARY KEY(clr_id);
 
-select * from classroom;
-desc classroom;
+ALTER TABLE classroom DROP CONSTRAINT pk_classroom;
 
--- dummy data
-insert into classroom(clr_id, clr_name, clr_capa)
-values(classroom_seq.nextval, '1강의실', 12);
-insert into classroom(clr_id, clr_name, clr_capa)
-values(classroom_seq.nextval, '프로젝트실', 8);
-
-commit;
+COMMIT;
 
 -- -------------------------------------------------------------------
 -- 과목 정보 테이블
 -- -------------------------------------------------------------------
-create table lecture (
-    lec_id int primary key,
-    lec_name varchar2(50),
-    lec_dis varchar(300),
-    clr_id int
+CREATE TABLE lecture (
+    lec_id  VARCHAR2(11) NOT NULL,
+    lec_name VARCHAR2(20) NOT NULL,
+    clr_id VARCHAR2(10) NOT NULL,
+    lec_dis VARCHAR2(200) NOT NULL
 );
-drop table lecture;
+DROP TABLE lecture;
+SELECT * FROM lecture;
+DESC lecture;
 
-create sequence lecture_seq;
-drop sequence lecture_seq;
+-- 기본키 설정
+ALTER TABLE lecture
+ADD CONSTRAINT pk_lecture
+PRIMARY KEY(lec_id);
 
-select * from lecture;
-desc lecture;
-
+ALTER TABLE lecture DROP CONSTRAINT pk_lecture;
+/*
 -- 외래키 제약 추가
-alter table lecture
-add constraint fk_lecture_clr_id
-foreign key(clr_id) references classroom(clr_id);
+ALTER TABLE lecture
+ADD CONSTRAINT fk_lecture_clr_id
+FOREIGN KEY(clr_id) REFERENCES classroom(clr_id);
 
 alter table lecture
 drop constraint fk_lecture_clr_id;
+*/
 
--- alter table lecture add(lec_dis varchar2(300));
+COMMIT;
 
--- dummy data
-insert into lecture(lec_id, lec_name, lec_dis, clr_id)
-values(lecture_seq.nextval, 'Java 취업 준비반', '2개월 안에 취업 가능한 수준의 자바 실력을 갖출 수 있는 강의',1);
-/*update lecture set lec_dis = '2개월 안에 취업 가능한 수준의 자바 실력을 갖출 수 있는 강의'
-where lec_id=1;*/
+-- -------------------------------------------------------------------
+-- 강의 테이블 ; 직원의 강의 정보
+-- -------------------------------------------------------------------
+CREATE TABLE teach_lecture (
+    tel_id  VARCHAR2(10) NOT NULL,
+    emp_id  VARCHAR2(11) NOT NULL,
+    lec_id  VARCHAR2(10) NOT NULL,
+    tel_enroll_date DATE NOT NULL,
+    tel_begin_date DATE NOT NULL,
+    tel_end_date DATE NOT NULL,
+    tel_curr VARCHAR2(3000) NOT NULL
+);
+DROP TABLE teach_lecture;
+SELECT * FROM teach_lecture;
+DESC teach_lecture;
 
-commit;
+-- 기본키 설정
+ALTER TABLE teach_lecture
+ADD CONSTRAINT pk_teach_lecture
+PRIMARY KEY(tel_id);
+
+ALTER TABLE teach_lecture DROP CONSTRAINT pk_teach_lecture;
+/*
+-- 외래키 설정
+*/
+COMMIT;
+
+-- -------------------------------------------------------------------
+-- 질문 게시물
+-- -------------------------------------------------------------------
+CREATE TABLE lecture_qna(
+    qna_id VARCHAR2(10) NOT NULL,
+    tel_id VARCHAR2(10) NOT NULL,
+    user_id VARCHAR2(11) NOT NULL,
+    qna_title VARCHAR2(50) NOT NULL,
+    qna_content VARCHAR2(3000) NOT NULL,
+    qna_created DATE NOT NULL,
+    qna_updated DATE NOT NULL
+);
+DROP TABLE lecture_qna;
+SELECT * FROM lecture_qna;
+DESC lecture_qna;
+
+-- 기본키 설정
+ALTER TABLE lecture_qna
+ADD CONSTRAINT pk_lecture_qna
+PRIMARY KEY(tel_id, qna_id);
+
+ALTER TABLE lecture_qna DROP CONSTRAINT pk_lecture_qna;
+/*
+-- 외래키 설정
+*/
+COMMIT;
+
+-- -------------------------------------------------------------------
+-- 댓글 목록
+-- -------------------------------------------------------------------
+CREATE TABLE lecture_qna_reply (
+    rep_id VARCHAR2(10) NOT NULL,
+    qna_id VARCHAR2(10) NOT NULL,
+    tel_id VARCHAR2(11) NOT NULL,
+    user_id VARCHAR2(11) NOT NULL,
+    rep_content VARCHAR2(500) NOT NULL,
+    rep_created DATE NOT NULL,
+    rep_updated DATE NOT NULL
+);
+DROP TABLE lecture_qna_reply;
+SELECT * FROM lecture_qna_reply;
+DESC lecture_qna_reply;
+
+-- 기본키 설정
+ALTER TABLE lecture_qna_reply
+ADD CONSTRAINT pk_lecture_qna_reply
+PRIMARY KEY(tel_id, qna_id, rep_id);
+
+ALTER TABLE lecture_qna_reply DROP CONSTRAINT pk_lecture_qna_reply;
+
+COMMIT;
 
 -- -------------------------------------------------------------------
 -- 수강 테이블 ; 학생의 수강 정보
 -- -------------------------------------------------------------------
-create table attend_lecture(
-    atc_id int primary key,
-    stu_id int,
-    lec_id int
+CREATE TABLE attend_lecture(
+    atc_id VARCHAR2(10) NOT NULL,
+    stu_id VARCHAR2(11) NOT NULL,
+    tel_id VARCHAR2(10) NOT NULL,
+    atc_join DATE NOT NULL,
+    atc_complete CHAR(1) NOT NULL
 );
-drop table attend_lecture;
+DROP TABLE attend_lecture;
+SELECT * FROM attend_lecture;
+DESC attend_lecture;
 
-create sequence attend_lecture_seq;
-drop sequence attend_lecture_seq;
+-- 기본키 설정
+ALTER TABLE attend_lecture
+ADD CONSTRAINT pk_attend_lecture
+PRIMARY KEY(atc_id);
 
-select * from attend_lecture;
-desc attend_lecture;
-
+ALTER TABLE attend_lecture DROP CONSTRAINT pk_attend_lecture;
+/*
 -- 외래키 제약 추가
 alter table attend_lecture
 add constraint fk_attend_lecture_stu_id
@@ -165,92 +236,5 @@ foreign key(stu_id) references student(stu_id);
 
 alter table attend_lecture
 drop constraint attend_lecture_stu_id_fk;
-
--- dummy data
-insert into attend_lecture(atc_id, stu_id, lec_id)
-values(attend_lecture_seq.nextval, 2, 1);
-
-delete from attend_lecture;
-
-commit;
-
--- -------------------------------------------------------------------
--- 질문 게시판
--- -------------------------------------------------------------------
-create table lecture_qna(
-    qna_id int primary key,
-    lec_id int,
-    user_id int,
-    qna_title varchar(60),
-    qna_content varchar(3000),
-    qna_created date,
-    qna_updated date
-);
-drop table lecture_qna;
-
-create sequence lecture_qna_seq;
-drop sequence lecture_qna_seq;
-
-select * from lecture_qna;
-desc lecture_qna;
-
-insert into lecture_qna(qna_id, lec_id, user_id, qna_title, qna_content, qna_created)
-values(lecture_qna_seq.nextval, 1, 2, '자바 널과 0의 차이','널과 0의 차이가 뭔가요?',sysdate);
-
--- 2배로 게시물 삽입
-insert into lecture_qna(qna_id, lec_id, user_id, qna_title, qna_content, qna_created)
-select lecture_qna_seq.nextval, lec_id, user_id, qna_title, qna_content, qna_created from lecture_qna;
-
-commit;
-
--- -------------------------------------------------------------------
--- 상담 정보
--- -------------------------------------------------------------------
-create table counsel_lecture(
-    cns_id int not null,-- 상담 식별자
-    user_id int, -- 상담 고객(null은 잠재 고객)
-    emp_id int not null, -- 상담 직원
-    cns_root int, -- 1: 전단지, 2: 광고
-    lec_id int, -- 관심 강의(다중값 원하면?)
-    cns_content varchar(3000),
-    cns_created date not null,
-    cns_updated date,
-    cns_followup char(1) not null,
-    cns_interest varchar(200) -- 일단은 텍스트로
-);
-drop table counsel_lecture;
-
-create sequence counsel_lecture_seq;
-drop sequence counsel_lecture_seq; 
-
-select * from counsel_lecture;
-desc counsel_lecture;
-
--- 기본키
-alter table counsel_lecture
-add constraint pk_counsel_lecture_cns_id
-primary key(cns_id);
-
-alter table counsel_lecture
-drop constraint pk_counsel_lecture_cns_id;
-
--- 외래키 제약 추가
--- 상담 고객 제약
-alter table counsel_lecture
-add constraint fk_counsel_lecture_user_id
-foreign key(user_id) references users(user_id);
-
-alter table counsel_lecture
-drop constraint fk_counsel_lecture_user_id;
-
--- 상담 직원 제약
-/*alter table counsel_lecture
-add constraint fk_counsel_lecture_user_id
-foreign key(user_id) references users(user_id);*/
-
-alter table counsel_lecture
-add constraint fk_counsel_lecture_lec_id
-foreign key(lec_id) references lecture(lec_id);
-
-commit;
-
+*/
+COMMIT;

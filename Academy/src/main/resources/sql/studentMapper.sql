@@ -11,3 +11,7 @@ from (select s.stu_id, l.lec_id, l.lec_name, l.lec_dis,
 where row_num between 1 and 3;
 
 select * from users;
+
+
+desc users;
+-- ¿¹Á¦

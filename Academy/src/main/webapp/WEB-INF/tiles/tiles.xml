@@ -5,11 +5,16 @@
   
 <tiles-definitions>
 	<!-- 직원  -->
+		<definition name="admin" template="/WEB-INF/tiles/template_dashboard.jsp">
+			<put-attribute name="nav" value="/WEB-INF/tiles/nav.jsp" />
+			<put-attribute name="menu" value="/WEB-INF/tiles/admin/admin_menu.jsp" />
+			<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+		</definition>
+	
 		<!-- 직원 dashboard 템플릿 -->
 		<definition name="admin.dashboard" template="/WEB-INF/tiles/template_dashboard.jsp">
 			<put-attribute name="nav" value="/WEB-INF/tiles/nav.jsp" />
 			<put-attribute name="menu" value="/WEB-INF/tiles/admin/admin_menu.jsp" />
-			
 			<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
 		</definition>
 		
@@ -42,9 +47,7 @@
 			<!-- 2. 강의 관리 -->
 
 			<!-- 3. 강의실 관리 -->
-			
-			<!-- 4. 내 정보 -->
-				
+		
 			<!-- 5. 직원 관리 -->
 				<!-- 직원관리 홈 -->
 				<definition name="admin/employee" extends="admin.noleft">
@@ -57,6 +60,19 @@
 					<put-attribute name="body" value="/WEB-INF/tiles/admin/student/home.jsp" />
 				</definition>
 				
+			<!-- 4. 내 정보 -->
+				<!-- 내 정보 홈 -->
+				<definition name="admin/info" extends="admin">
+					<put-attribute name="left" value="/WEB-INF/tiles/admin/info/left_menu.jsp" />
+					<put-attribute name="body" value="/WEB-INF/tiles/admin/info/home.jsp" />
+				</definition>
+				
+				<!-- 내 정보 각 메뉴 *메뉴명 -->
+				<definition name="admin/info/*" extends="admin">
+					<put-attribute name="left" value="/WEB-INF/tiles/admin/info/left_menu.jsp" />
+					<put-attribute name="body" value="/WEB-INF/tiles/admin/info/{1}.jsp" />
+				</definition>
+					
 		<!-- 직원 템플릿 -->
 		<definition name="admin" template="/WEB-INF/tiles/template_admin.jsp">
 			<put-attribute name="nav" value="/WEB-INF/tiles/nav.jsp" />

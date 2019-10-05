@@ -9,7 +9,7 @@
 			<div class="card-body">
 				<h4 class="card-title">내 프로필</h4>
 				<p>${loginUser.user_name} 님, 즐거운 하루 되세요 :)</p>
-				<p>아이디 : ${loginUser.user_login_id}</p>
+				<p>아이디 : ${loginUser.user_id}</p>
 				<p>이메일 : ${loginUser.user_email}</p>
 				<a href="/student/info" class="btn btn-danger btn-sm">정보 변경</a>
 			</div>

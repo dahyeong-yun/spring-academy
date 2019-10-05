@@ -36,7 +36,7 @@ public class StudentController {
 		
 		// 사용자의 전체 수강 강의 리스트 set => 상위 3개로 변경
 		UserVO user = (UserVO) session.getAttribute("loginUser");
-		int stu_id = user.getUser_id();
+		String stu_id = user.getUser_id();
 		List<AttendLectureVO> lectureList = studentMenuService.attendLectureList(stu_id);
 		model.addAttribute("lectureList", lectureList);
 		
@@ -51,7 +51,7 @@ public class StudentController {
 		
 		// 사용자의 전체 수강 강의 리스트 set
 		UserVO user = (UserVO) session.getAttribute("loginUser");
-		int stu_id = user.getUser_id();
+		String stu_id = user.getUser_id();
 		List<AttendLectureVO> lectureList = studentLectureService.lectureList(stu_id);
 		model.addAttribute("lectureList", lectureList);
 		

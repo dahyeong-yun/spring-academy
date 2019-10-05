@@ -21,7 +21,7 @@ public class StudentLectureServiceImpl implements StudentLectureService {
 	
 	// 수강 강의 리스트
 	@Override
-	public List<AttendLectureVO> lectureList(int stu_id) throws Exception {
+	public List<AttendLectureVO> lectureList(String stu_id) throws Exception {
 		return dao.attendLectureList(stu_id);
 	}
 	

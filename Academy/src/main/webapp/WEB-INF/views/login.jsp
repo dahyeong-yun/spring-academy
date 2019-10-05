@@ -53,9 +53,9 @@
 <body class="text-center">
 	<div class="container-fluid login">
 		<form class="form-signin" action="login" method="post" id="login_form">
-			<h2 class="form-signin-heading">로그인 해주세요</h2>
-			<input type="text" class="form-control" name="user_login_id" placeholder="Email Address" required autofocus />
-			<input type="password" class="form-control" name="user_password" placeholder="Password" required />
+			<h4 class="form-signin-heading">로그인 해주세요</h4>
+			<input type="text" class="form-control" name="user_id" placeholder="아이디를 입력하세요." required autofocus />
+			<input type="password" class="form-control" name="user_password" placeholder="비밀번호를 입력하세요." required />
 			
 			<label class="checkbox">
 				<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
@@ -64,6 +64,9 @@
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 			<c:if test="${msg eq 'fail'}">
 				<div id="msg">아이디 또는 비밀번호를 다시 확인하세요. 등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.</div>
+			</c:if>
+			<c:if test="${msg eq 'suspended'}">
+				<div id="msg">정지된 회원입니다. 계정 활성화를 원하시면 관리자에게 문의하세요.</div>
 			</c:if>
 		</form>
 		

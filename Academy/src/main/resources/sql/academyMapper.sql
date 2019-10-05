@@ -1,7 +1,12 @@
 -- 로그인
-select user_id, user_login_id, user_password, user_type
-from users
-where user_login_id = 'admin';
+SELECT
+    user_id, user_password, user_type, user_suspended, user_name,
+    user_email, user_phone, user_birth, user_address, user_gender, user_join_date
+FROM
+    users
+WHERE 
+    user_suspended = '0'
+    AND user_id = 'admin';
 
 -- 수강 과목 리스트
 select s.stu_id, s.stu_name, l.lec_id, l.lec_name
