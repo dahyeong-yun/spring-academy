@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.academy.appl.admin.persistence.AdminInfoDAO;
 import com.academy.core.vo.UserVO;
@@ -25,6 +26,12 @@ public class AdminInfoDAOImpl implements AdminInfoDAO {
 	@Override
 	public UserVO renewalUserSession(UserVO vo) {
 		return session.selectOne(namespace+".renewalUserSession", vo);
+	}
+	
+	// 회원 탈퇴
+	@Override
+	public void suspendUser(String user_id) throws Exception {
+		session.update(namespace+".suspendUser", user_id);
 	}
 
 }

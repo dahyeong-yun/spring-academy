@@ -22,6 +22,7 @@
 		<div class="card shadow-sm">
 			<div class="card-body">
 				<h4 class="card-title">최근 등록 강의	</h4>
+				<c:if test="${lectureList ne null}">
 				<c:forEach items="${lectureList}" var="lecture">
 					<div class="card ">
 						<div class="card-body">
@@ -31,6 +32,8 @@
 						</div>
 					</div>
 				</c:forEach>
+				</c:if>
+				<!-- 등록된 강의가 없네요  -->
 				<a href="/student/lecture" class="link">전체 강의 보기</a>
 			</div>
 		</div>

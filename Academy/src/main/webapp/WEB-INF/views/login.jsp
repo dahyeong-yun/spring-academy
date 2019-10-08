@@ -26,7 +26,7 @@
 		crossorigin="anonymous">
 	
 	<!-- custom style.css -->
-	<link rel="stylesheet" href="/build/css/style.css">
+	<link rel="stylesheet" href="resources/build/css/style.css">
 	
 	<!--  font  -->
 	<link

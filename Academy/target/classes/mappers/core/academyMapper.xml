@@ -17,10 +17,9 @@
 		    user_gender,
 		    user_join
 		FROM
-			 users
+			users
 		WHERE
-			user_suspended = '0'
-			AND user_id = #{user_id}
+			user_id = #{user_id}
 	</select>
 	
 	<!-- 학생 세션 -->

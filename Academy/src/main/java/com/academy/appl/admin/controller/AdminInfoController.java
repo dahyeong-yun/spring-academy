@@ -45,10 +45,10 @@ public class AdminInfoController {
 	
 	// 회원 정지 폼
 	@RequestMapping("suspend")
-	public String getSuspend(Model model) throws Exception {
+	public String getSuspend(String user_id, Model model) throws Exception {
 		log.info("내 정보 수정 메뉴에서 회원 탈퇴 폼 요청(GET)");
-		model.addAttribute("pageTitle", "회원 탈퇴");
-		return "admin/info/suspend";
+		adminInfoService.suspendUser(user_id);
+		return "redirect:/logout";
 	}	
 	
 }

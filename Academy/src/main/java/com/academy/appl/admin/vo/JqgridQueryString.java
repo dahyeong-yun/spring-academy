@@ -9,15 +9,15 @@ public class JqgridQueryString {
 	private String nd; //
 	private int rows; // 몇 개씩
 	private int page; // 페이지 수
-	private String sidx;
+	private String sidx; // 정렬할 컬럼 명
 	private String sord; // 정렬 방식 asc, desc
 	private String searchField;
-	private String searchString;
+	private String searchString; // 검색어
 	private String searchOper;
 	private String filters;
 	
-	private int total;
-	private int records;
+	private double total;
+	private double records;
 
 	private int rowStart;
 	private int rowEnd;

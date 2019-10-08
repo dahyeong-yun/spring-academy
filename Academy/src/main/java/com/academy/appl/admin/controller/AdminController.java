@@ -32,8 +32,8 @@ public class AdminController {
 	*/
 	@RequestMapping("lecture")
 	public String GETlecture(Model model) {
-		log.info("GET 관리자 메뉴의 강의 관리 메뉴 요청");
-		return "admin/lecture";
+		log.info("GET 직원 메뉴의 강의 관리 메뉴 요청");
+		return "redirect:/admin/lecture/home";
 	}
 	/*
 	@RequestMapping("studyroom")
@@ -42,10 +42,18 @@ public class AdminController {
 		return "admin/studyroom";
 	}
 	*/
+	
+	@RequestMapping("lecManage")
+	public String getLecManage(Model model) {
+		log.info("GET 관리자 메뉴의 강의 관리 메뉴 요청");
+		model.addAttribute("pageTitle", "강의 관리");
+		return "redirect:/admin/lecManage/list";
+	}
+	
 	@RequestMapping("employee")
 	public String GETemployee(Model model) throws Exception {
 		log.info("GET 관리자 메뉴의 직원 관리 메뉴 요청");
-		return "admin/employee";
+		return "redirect:/admin/employee/list";
 	}	
 	
 	@RequestMapping("student")
@@ -57,7 +65,7 @@ public class AdminController {
 	// 내 정보 수정(관리자, 직원)
 	@RequestMapping("info")
 	public String GETinfo(Model model) {
-		log.info("GET 관리자 메뉴의 직원 관리 메뉴 요청");
+		log.info("GET 관리자/직원 메뉴의 직원 관리 메뉴 요청");
 		model.addAttribute("pageTitle", "정보 변경");
 		return "admin/info";
 	}	

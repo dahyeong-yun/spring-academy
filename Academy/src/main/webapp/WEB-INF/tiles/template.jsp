@@ -40,11 +40,6 @@
 		<!-- 본문 컨텐츠 -->
 		<div class="container mt-4">
 			<div class="container">
-				<nav aria-label="breadcrumb">
-				  <ol class="breadcrumb">
-				    <li class="breadcrumb-item"><a href="#">Home</a></li>
-				  </ol>
-				</nav>
 				
 			<c:choose>
 				<c:when test="${pageTitle != null}">

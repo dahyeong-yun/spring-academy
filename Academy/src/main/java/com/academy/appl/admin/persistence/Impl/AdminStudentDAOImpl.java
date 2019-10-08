@@ -29,4 +29,21 @@ public class AdminStudentDAOImpl implements AdminStudentDAO {
 	public int studentListCount() throws Exception {
 		return session.selectOne(namespace+".studentListCount");
 	}
+
+	// 학생 정보 수정
+	@Override
+	public void updateStudent(AdminStudentVO vo) throws Exception {
+		session.update(namespace+".updateStudent", vo);
+	}
+
+	// 학생 계정 정지
+	@Override
+	public void suspendStudent(String user_id) throws Exception {
+		session.update(namespace+".suspendStudent", user_id);
+	}
+
+	@Override
+	public String getIdOrder() throws Exception {
+		return session.selectOne(namespace+".getIdOrder");
+	}
 }

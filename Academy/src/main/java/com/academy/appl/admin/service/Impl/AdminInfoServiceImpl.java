@@ -24,5 +24,10 @@ public class AdminInfoServiceImpl implements AdminInfoService {
 		return null;
 	}
 	
+	// 회원 탈퇴
+	@Override
+	public void suspendUser(String user_id) throws Exception {
+		dao.suspendUser(user_id);
+	}
 	
 }

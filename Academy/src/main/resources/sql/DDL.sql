@@ -104,7 +104,6 @@ COMMIT;
 CREATE TABLE lecture (
     lec_id  VARCHAR2(11) NOT NULL,
     lec_name VARCHAR2(20) NOT NULL,
-    clr_id VARCHAR2(10) NOT NULL,
     lec_dis VARCHAR2(200) NOT NULL
 );
 DROP TABLE lecture;
@@ -136,6 +135,7 @@ CREATE TABLE teach_lecture (
     tel_id  VARCHAR2(10) NOT NULL,
     emp_id  VARCHAR2(11) NOT NULL,
     lec_id  VARCHAR2(10) NOT NULL,
+    clr_id VARCHAR2(10) NOT NULL,
     tel_enroll_date DATE NOT NULL,
     tel_begin_date DATE NOT NULL,
     tel_end_date DATE NOT NULL,

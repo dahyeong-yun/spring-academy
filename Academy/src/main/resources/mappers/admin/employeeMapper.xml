@@ -5,15 +5,55 @@
 <mapper namespace="com.academy.mappers.admin.employeeMapper">
 	<!-- 전체 직원 리스트 -->
 	<select id="employeeList" resultType="EmployeeVO">
-		<![CDATA[
-		select 
-			user_id, user_login_id, user_password, user_type, user_suspended, user_name, user_email,
-			user_birth,	user_address, user_gender, user_join_date
-		from users
-		where user_type <> 0
-		]]>
+		SELECT
+		    users.user_id,
+		    users.user_name,
+		    users.user_phone,
+		    users.user_email,
+		    users.user_address,
+		    users.user_gender,
+		    TO_CHAR(users.user_join, 'YYYY-MM-DD') as user_join
+		FROM
+		    users
+		WHERE
+		    users.user_type = 1
+		    AND users.user_suspended = 0
 	</select>
 	
-
+	<!-- 담당 업무별 아이디 발급 순번 받아오기 -->
+	<select id="getIdOrder" resultType="String">
+	SELECT
+	    LPAD(TO_CHAR(orderNum),3,'0')
+	FROM
+	   (SELECT
+	        MAX(TO_NUMBER(SUBSTR(users.user_id,9,3)))+1 as orderNum
+	    FROM
+	        users
+	    WHERE
+	        users.user_type = 1
+	        and SUBSTR(user_id,7,2)= #{part})
+	</select>
+	
+	<!-- 아이디 발급 -->
+	<insert id="makeEmpAccount">
+	INSERT INTO USERS
+	   (user_id,
+	    user_password,
+	    user_type,
+	    user_name,
+	    user_phone,
+	    user_email,
+	    user_gender,
+	    user_join)
+	VALUES
+	   (#{user_id},
+		#{user_password},
+		'1', -- 고정
+		#{user_name},
+		#{user_phone},
+		#{user_email}',
+		#{user_gender}
+		,TO_DATE(#{user_join}));
+	</insert>
 	
 </mapper>

@@ -13,6 +13,8 @@ import com.academy.appl.admin.service.AdminStudentService;
 import com.academy.appl.admin.vo.AdminStudentVO;
 import com.academy.appl.admin.vo.JqgridQueryString;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class AdminStudentServiceImpl implements AdminStudentService {
 
@@ -27,7 +29,7 @@ public class AdminStudentServiceImpl implements AdminStudentService {
 	
 	// 그리드 페이지 정보 set
 	@Override
-	public JqgridQueryString jqgridQuerySetting(JqgridQueryString jqQueryString, int records) {
+	public JqgridQueryString jqgridQuerySetting(JqgridQueryString jqQueryString, double records) {
 		// 페이징 정보에 따라 쿼리 스트링 정보 수정
 		int page = jqQueryString.getPage(); // 요청한 페이지
 		int rows = jqQueryString.getRows(); // 페이지 당 게시물 수
@@ -40,7 +42,7 @@ public class AdminStudentServiceImpl implements AdminStudentService {
 			rows=10;
 		}
 		
-		int total = (int) Math.ceil(records/rows); // 전체 페이지
+		double total = Math.ceil(records/rows); // 전체 페이지
 		jqQueryString.setTotal(total);
 		jqQueryString.setRecords(records);
 		
@@ -58,10 +60,11 @@ public class AdminStudentServiceImpl implements AdminStudentService {
 		return dao.studentList(jqQueryString);
 	}
 
+	// 전체 학생 리스트 jqgrid 형식 반환
 	@Override
 	public Map<String, Object> combineQueryAndStudentList(List<AdminStudentVO> stuList,
 			JqgridQueryString jqQueryString) {
-		
+		log.info("total : "+jqQueryString.getTotal());
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("rows", stuList);
 		result.put("total", jqQueryString.getTotal());
@@ -70,5 +73,24 @@ public class AdminStudentServiceImpl implements AdminStudentService {
 		
 		return result;
 	}
+
+	// 학생 정보 수정
+	@Override
+	public void updateStudent(AdminStudentVO vo) throws Exception {
+		dao.updateStudent(vo);
+	}
+
+	// 학생 계정 정지
+	@Override
+	public void suspendStudent(String user_id) throws Exception {
+		dao.suspendStudent(user_id);
+	}
+
+	// 학생 아이디 순번 받아오기
+	@Override
+	public String getIdOrder() throws Exception {
+		return dao.getIdOrder();
+	}
+
 	
 }

@@ -22,7 +22,7 @@
 				<put-attribute name="body" value="/WEB-INF/tiles/admin/dashboard/dashboard.jsp" />
 			</definition>
 			
-			<definition name="admin/lecture" extends="admin.dashboard">
+			<definition name="admin/lecture/home" extends="admin.dashboard">
 				<put-attribute name="body" value="/WEB-INF/tiles/admin/lecture/home.jsp" />
 			</definition>
 			
@@ -45,19 +45,46 @@
 				</definition>
 			
 			<!-- 2. 강의 관리 -->
-
-			<!-- 3. 강의실 관리 -->
-		
-			<!-- 5. 직원 관리 -->
-				<!-- 직원관리 홈 -->
-				<definition name="admin/employee" extends="admin.noleft">
-					<put-attribute name="body" value="/WEB-INF/tiles/admin/employee/home.jsp" />
+				<!-- 각 강의 홈 *강의 아이디 -->
+				<definition name="admin/lectrue/*" extends="admin">
+					<put-attribute name="left" value="/WEB-INF/tiles/admin/lecture/left_menu.jsp" />
+					<put-attribute name="body" value="/WEB-INF/tiles/admin/lecture/lecture_home.jsp" />
 				</definition>
 				
+				<!-- 각 강의 관련 메뉴 *강의 아이디*각 메뉴 -->
+				<definition name="admin/lectrue/*" extends="admin">
+					<put-attribute name="left" value="/WEB-INF/tiles/admin/lecture/left_menu.jsp" />
+					<put-attribute name="body" value="/WEB-INF/tiles/admin/lecture/{2}.jsp" />
+				</definition>
+				
+			<!-- 3. 강의실 관리 -->
+
+			<!-- 2. 강의 관리(관리자) -->
+				<!-- 강의 관리 홈 -->
+				<definition name="admin/lecManage/*" extends="admin">
+					<put-attribute name="left" value="/WEB-INF/tiles/admin/lecManage/left_menu.jsp" />
+					<put-attribute name="body" value="/WEB-INF/tiles/admin/lecManage/{1}.jsp" />
+				</definition>
+				
+			<!-- 5. 직원 관리 -->
+				<!-- 직원 관리  *메뉴명 -->
+				<definition name="admin/employee/*" extends="admin">
+					<put-attribute name="left" value="/WEB-INF/tiles/admin/employee/left_menu.jsp" />
+					<put-attribute name="body" value="/WEB-INF/tiles/admin/employee/{1}.jsp" />
+				</definition>
+				
+				
 			<!-- 6. 학생 관리 -->
-				<!-- 학생관리 홈 -->
-				<definition name="admin/student" extends="admin.noleft">
+				<!-- 학생 관리 홈 -->
+				<definition name="admin/student" extends="admin">
+					<put-attribute name="left" value="/WEB-INF/tiles/admin/student/left_menu.jsp" />
 					<put-attribute name="body" value="/WEB-INF/tiles/admin/student/home.jsp" />
+				</definition>
+				
+				<!-- 학생 관리  *메뉴명 -->
+				<definition name="admin/student/*" extends="admin">
+					<put-attribute name="left" value="/WEB-INF/tiles/admin/student/left_menu.jsp" />
+					<put-attribute name="body" value="/WEB-INF/tiles/admin/student/{1}.jsp" />
 				</definition>
 				
 			<!-- 4. 내 정보 -->
@@ -85,8 +112,7 @@
 				<put-attribute name="left" value="/WEB-INF/tiles/admin/{1}/left_menu.jsp" />
 				<put-attribute name="body" value="/WEB-INF/tiles/admin/{1}/home.jsp" />
 			</definition>
-			
-			
+	
 	<!-- 직원 끝 -->
 	
 	<!-- 학생  -->
@@ -133,7 +159,7 @@
 						<put-attribute name="body" value="/WEB-INF/tiles/student/lecture/{2}.jsp" />
 					</definition>
 		
-		 		<!-- 2. 강의실 예약 -->
+				<!-- 2. 강의실 예약 -->
 					<!-- 강의실 예약 *메뉴명 -->
 					<definition name="student/studyroom/*" extends="student">
 						<put-attribute name="left" value="/WEB-INF/tiles/student/studyroom/left_menu.jsp" />
@@ -142,5 +168,18 @@
 				
 				<!-- 3. 증명/발급 -->
 				<!--  -->
+				
+				<!-- 4. 내 정보 -->
+					<!-- 내 정보 홈 -->
+					<definition name="student/info" extends="student">
+						<put-attribute name="left" value="/WEB-INF/tiles/student/info/left_menu.jsp" />
+						<put-attribute name="body" value="/WEB-INF/tiles/student/info/home.jsp" />
+					</definition>
+					
+					<!-- 내 정보 각 메뉴 *메뉴명 -->
+					<definition name="student/info/*" extends="student">
+						<put-attribute name="left" value="/WEB-INF/tiles/student/info/left_menu.jsp" />
+						<put-attribute name="body" value="/WEB-INF/tiles/student/info/{1}.jsp" />
+					</definition>
 	<!-- 학생 끝  -->
 </tiles-definitions>

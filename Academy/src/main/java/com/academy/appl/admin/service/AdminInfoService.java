@@ -8,4 +8,8 @@ public interface AdminInfoService {
 
 	// 세션 갱신을 위한 사용자 정보 조회
 	public UserVO renewalUserSession(UserVO vo);
+	
+	// 회원 탈퇴
+	public void suspendUser(String user_id) throws Exception;
+
 }

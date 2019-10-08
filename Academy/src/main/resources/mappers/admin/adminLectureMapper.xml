@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.academy.mappers.admin.adminLectureMapper">
+	
+	<select id="adminLetureList" resultType="AdminLectureVO">
+		<![CDATA[
+		SELECT
+		    tel_id,
+		    emp_id,
+		    lec_id,
+		    clr_id,
+		    tel_enroll_date,
+		    tel_begin_date,
+		    tel_end_date,
+		    tel_curr
+		FROM
+		    teach_lecture
+		WHERE
+		    tel_begin_date < sysdate
+		    AND tel_end_date > sysdate
+		    AND emp_id = #{user_id}
+		]]>
+	</select>
+	
+	<select id="countOngoingLeture" resultType="int">
+		<![CDATA[
+		SELECT
+		    COUNT(*)
+		FROM
+		    teach_lecture
+		WHERE
+		    tel_begin_date < sysdate
+		    AND tel_end_date > sysdate
+		    AND emp_id =  #{user_id}
+    	]]>
+	</select>
+		
+	<select id="countEndLeture" resultType="int">    
+		<![CDATA[
+		SELECT
+		    COUNT(*)
+		FROM
+		    teach_lecture
+		WHERE
+		    tel_end_date < sysdate
+		    and emp_id = #{user_id}
+    	 ]]>
+    </select>
+
+   	<select id="countScheduledLeture" resultType="int">
+   		<![CDATA[
+		SELECT
+		    COUNT(*)
+		FROM
+		    teach_lecture
+		WHERE
+		    tel_begin_date > sysdate
+		    and emp_id = '20190111001';
+    	 ]]>
+	</select>
+</mapper>

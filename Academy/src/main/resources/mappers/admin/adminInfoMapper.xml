@@ -30,4 +30,18 @@
 			AND user_id = #{user_id}
 	</select>
 	
+	<!-- 직원 회원 탈퇴 -->
+	<update id="suspendUser">
+		UPDATE
+		    users
+		SET
+		    user_suspended = '1',
+		    user_name = 'suspended',
+		    user_email = 'suspended',
+		    user_phone = 'suspended',
+		    user_address = 'suspended',
+		    user_gender = '1'
+		WHERE 
+		    user_id = #{user_id}
+	</update>
 </mapper>

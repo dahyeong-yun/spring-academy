@@ -3,45 +3,6 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.academy.mappers.admin.adminStudentMapper">
-
-	<!-- 전체 사용자 리스트 -->
-	<select id="studentList" resultType="AdminStudentVO">
-		SELECT
-		    user_id,
-		    user_login_id,
-		    user_password,
-		    user_type,
-		    user_suspended,
-		    user_name,
-		    user_phone,
-		    user_email,
-		    user_birth,
-		    user_address,
-		    user_gender,
-		    user_join_date
-		FROM (SELECT
-		        users.user_id,
-		        users.user_login_id,
-		        users.user_password,
-		        users.user_type,
-		        users.user_suspended,
-		        users.user_name,
-		        users.user_phone,
-		        users.user_email,
-		        users.user_birth,
-		        users.user_address,
-		        users.user_gender,
-		        users.user_join_date,
-		        row_number() over(order by user_id asc) as row_num
-		    FROM
-		        users
-		    WHERE
-		        users.user_type = 2
-		        AND users.user_suspended = 0)
-		WHERE
-		    row_num BETWEEN #{rowStart} AND #{rowEnd}
-	</select>
-	
 	<!-- 전체 사용자 숫자 -->
 	<select id="studentListCount" resultType="int">
 		SELECT COUNT(user_id)
@@ -50,5 +11,110 @@
 		AND users.user_suspended = 0
 	</select>
 	
+	<!-- 전체 사용자 리스트 -->
+	<select id="studentList" resultType="AdminStudentVO">
+		SELECT
+		    user_id,
+		    user_password,
+		    user_type,
+		    user_suspended,
+		    user_name,
+		    user_phone,
+		    user_email,
+		    user_address,
+		    user_gender,
+		    user_join
+		FROM (SELECT
+		        users.user_id,
+		        users.user_password,
+		        users.user_type,
+		        users.user_suspended,
+		        users.user_name,
+		        users.user_phone,
+		        users.user_email,
+		        users.user_address,
+		        users.user_gender,
+		        TO_CHAR(users.user_join, 'YYYY-MM-DD') as user_join,
+		        row_number() over(order by user_id asc) as row_num
+		    FROM
+		        users
+		    WHERE
+		        users.user_type = 2
+		        AND users.user_suspended = 0)
+		WHERE
+		    row_num BETWEEN #{rowStart} AND #{rowEnd}
+		<include refid="search"></include>
+		<include refid="sortCondition"></include>
+	</select>
 	
+	<!-- 검색 조건 -->
+	<sql id="search">
+		<if test="searchField != '' and searchField != null"> 
+			AND ${searchField}
+			<choose>
+				<when test="searchOper eq 'eq'"> LIKE</when>
+				<when test="searchOper != 'eq'"> NOT LIKE </when>
+			</choose>
+			'%' || #{searchString} || '%'
+		</if>
+	</sql>
+
+	<!-- 정렬 조건 -->
+	<sql id="sortCondition">
+		<if test="sidx != '' and sidx !=''"> 
+			ORDER BY
+			<choose>
+				<when test="sidx eq ''">user_id</when>
+				<otherwise>${sidx}</otherwise>
+			</choose> 
+			
+			<choose>
+				<when test="sord eq 'asc'"> ASC </when>
+				<otherwise> DESC </otherwise>
+			</choose>
+		</if> 
+	</sql>
+	
+	<!-- 학생 정보 수정 -->
+	<update id="updateStudent">
+		UPDATE
+		   	users
+		SET
+		    user_name = #{user_name},
+		    user_phone = #{user_phone},
+		    user_email = #{user_email},
+		    user_address = #{user_address},
+		    user_gender = #{user_gender}
+		WHERE
+		    user_id = #{user_id}
+    </update>
+    
+    <!-- 직원 회원 탈퇴 -->
+	<update id="suspendStudent">
+		UPDATE
+		    users
+		SET
+		    user_suspended = '1',
+		    user_name = 'suspended',
+		    user_email = 'suspended',
+		    user_phone = 'suspended',
+		    user_address = 'suspended',
+		    user_gender = '3'
+		WHERE 
+		    user_id = #{user_id}
+	</update>
+	
+	<!-- 학생 아이디  순번 받아오기 -->
+	<select id="getIdOrder" resultType="String">
+	SELECT
+	    LPAD(TO_CHAR(orderNum),3,'0')
+	FROM
+	   (SELECT
+	        MAX(TO_NUMBER(SUBSTR(users.user_id,9,3)))+1 as orderNum
+	    FROM
+	        users
+	    WHERE
+	        users.user_type = 2
+	        and SUBSTR(user_id,7,2)= '21')
+	</select>
 </mapper>

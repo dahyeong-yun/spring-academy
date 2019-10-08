@@ -23,4 +23,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public List<EmployeeVO> employeeList() throws Exception {
 		return session.selectList(namespace+".employeeList");
 	}
+
+	// 직원 아이디 순번 받아오기
+	@Override
+	public String getIdOrder(String part) throws Exception {
+		return session.selectOne(namespace+".getIdOrder", part);
+	}
 }

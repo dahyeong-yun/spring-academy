@@ -37,8 +37,8 @@ public class StudentController {
 		// 사용자의 전체 수강 강의 리스트 set => 상위 3개로 변경
 		UserVO user = (UserVO) session.getAttribute("loginUser");
 		String stu_id = user.getUser_id();
-		List<AttendLectureVO> lectureList = studentMenuService.attendLectureList(stu_id);
-		model.addAttribute("lectureList", lectureList);
+		//List<AttendLectureVO> lectureList = studentMenuService.attendLectureList(stu_id); 강의가 없을 수 있음
+		//model.addAttribute("lectureList", lectureList);
 		
 		// 질문 리스트
 
@@ -73,6 +73,7 @@ public class StudentController {
 	@RequestMapping("info")
 	public String infoGet(Model model) {
 		log.info("학생 메뉴의 내 정보 요청(GET)");
+		model.addAttribute("pageTitle", "정보 변경");
 		return "student/info";
 	}	
 }
